@@ -18,6 +18,11 @@ const Login = () => {
           description: "You have successfully logged in.",
         });
         navigate("/home");
+      } else if (event === "SIGNED_OUT") {
+        toast({
+          title: "Signed out",
+          description: "You have been signed out.",
+        });
       }
     });
 
@@ -52,9 +57,24 @@ const Login = () => {
                   height: "40px",
                 },
               },
+              variables: {
+                default: {
+                  colors: {
+                    brand: 'rgb(var(--primary))',
+                    brandAccent: 'rgb(var(--primary))',
+                  },
+                },
+              },
             }}
             providers={["google", "github"]}
             redirectTo={window.location.origin + "/home"}
+            onError={(error) => {
+              toast({
+                variant: "destructive",
+                title: "Error",
+                description: error.message || "An error occurred during authentication",
+              });
+            }}
           />
         </div>
       </div>
