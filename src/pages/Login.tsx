@@ -68,13 +68,6 @@ const Login = () => {
             }}
             providers={["google", "github"]}
             redirectTo={window.location.origin + "/home"}
-            onError={(error) => {
-              toast({
-                variant: "destructive",
-                title: "Error",
-                description: error.message || "An error occurred during authentication",
-              });
-            }}
           />
         </div>
       </div>
